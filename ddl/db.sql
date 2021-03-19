@@ -23,22 +23,6 @@ CREATE TABLE `saga`.`inventory` (
   PRIMARY KEY (`sku_id`),
   UNIQUE INDEX `sku_id_UNIQUE` (`sku_id` ASC) VISIBLE);
 
--- Payments table
-CREATE TABLE `saga`.`payments` (
-  `payment_id` INT NOT NULL AUTO_INCREMENT ,
-  `payment_amount` DECIMAL(10,2) NOT NULL,
-  `payment_status` VARCHAR(45) NOT NULL,
-  `payment_timestamp` DATETIME NOT NULL,
-  PRIMARY KEY (`payment_id`),
-  UNIQUE INDEX `payment_id_UNIQUE` (`payment_id` ASC) VISIBLE);
-
--- Shipping table
-CREATE TABLE `saga`.`shipping` (
-  `shipping_id` INT NOT NULL AUTO_INCREMENT,
-  `shipping_date` DATETIME NOT NULL,
-  PRIMARY KEY (`shipping_id`),
-  UNIQUE INDEX `shipping_id_UNIQUE` (`shipping_id` ASC) VISIBLE); 
-
 -- Audit history
 CREATE TABLE `saga`.`order_trail` (
  `trail_id` INT NOT NULL AUTO_INCREMENT,

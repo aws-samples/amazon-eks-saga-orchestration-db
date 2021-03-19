@@ -21,9 +21,9 @@ Installation of the AWS RDS (MySQL) database is a two step process as described 
 Create the database and its objects with the following commands.
 
 ```bash
-git clone ${GIT_URL}/eks-saga-db
+git clone ${GIT_URL}/amazon-eks-saga-orchestration-db
 
-export PROJECT_HOME=${PWD}/eks-saga-db
+export PROJECT_HOME=${PWD}/amazon-eks-saga-orchestration-db
 # Change this password !!
 export MYSQL_MASTER_PASSWORD='V3ry.Secure.Passw0rd'
 export RDS_DB_ID=eks-saga-db
@@ -37,7 +37,7 @@ source ${PROJECT_HOME}/scripts/ddl.sh
 Create IAM policy for connecting to the database by following the commands below.
 
 ```bash
-cd eks-saga-db/scripts
+cd ${PROJECT_HOME}/scripts
 export RDS_DB_ID=eks-saga-db
 export DB_RESOURCE_ID=`aws rds describe-db-instances --db-instance-identifier ${RDS_DB_ID} --query 'DBInstances[0].DbiResourceId' --output text`
 ./iam.sh ${REGION_ID} ${ACCOUNT_ID} ${DB_RESOURCE_ID}
@@ -52,9 +52,9 @@ Clean up of the AWS RDS (MySQL) database is a two step process as described belo
 1. Follow the steps below, to remove the database objects.
 
 ```bash
-git clone ${GIT_URL}/eks-saga-db
+git clone ${GIT_URL}/amazon-eks-saga-orchestration-db
 
-export PROJECT_HOME=${PWD}/eks-saga-db
+export PROJECT_HOME=${PWD}/amazon-eks-saga-orchestration-db
 # Use changed password !!
 export MYSQL_MASTER_PASSWORD='V3ry.Secure.Passw0rd'
 export RDS_DB_ID=eks-saga-db
@@ -67,7 +67,7 @@ source ${PROJECT_HOME}/scripts/drop.sh
 1. To remove the RDS instance and IAM policy use the commands below.
 
 ```bash
-export PROJECT_HOME=${PWD}/eks-saga-db
+export PROJECT_HOME=${PWD}/amazon-eks-saga-orchestration-db
 export RDS_DB_ID=eks-saga-db
 source ${PROJECT_HOME}/scripts/cleanup.sh ${ACCOUNT_ID} ${RDS_DB_ID}
 ``` 
