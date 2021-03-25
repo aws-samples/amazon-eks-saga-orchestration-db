@@ -26,4 +26,4 @@ ACCOUNT_ID=$1
 RDS_DB_ID=$2
 GROUP_NAME="eks-saga-orchestration-sg"
 
-cleanUp ${ACCOUNT_ID} ${RDS_DB_ID}
+cleanUp ${ACCOUNT_ID} ${RDS_DB_ID} ${GROUP_NAME}
