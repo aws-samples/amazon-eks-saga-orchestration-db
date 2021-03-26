@@ -13,6 +13,18 @@ cleanUp() {
   echo 'Removing RDS DB instance'
   aws rds delete-db-instance --db-instance-identifier ${RDS_DB_ID} --skip-final-snapshot
 
+  flag=true
+  while [[ flag == true]]
+  do
+    if `aws rds describe-db-instances --db-instance-identifier ${RDS_DB_ID} 1>/dev/null 2>/dev/null`;
+    then
+      flag = true
+    else
+      flag = false
+    fi
+  done
+  echo 'Removed database'
+
   echo 'Removing RDS DB security group'
   aws ec2 delete-security-group --group-name ${GROUP_NAME}
 }
