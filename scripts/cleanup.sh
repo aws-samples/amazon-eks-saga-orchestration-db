@@ -13,15 +13,18 @@ cleanUp() {
   echo 'Removing RDS DB instance'
   aws rds delete-db-instance --db-instance-identifier ${RDS_DB_ID} --skip-final-snapshot
 
-  flag=true
-  while [[ ${flag} == true ]]
+  DB_STATUS='true'
+  while [[ "${DB_STATUS}" == 'true' ]]
   do
     if `aws rds describe-db-instances --db-instance-identifier ${RDS_DB_ID} 1>/dev/null 2>/dev/null`;
     then
-      flag = true
+      DB_STATUS = 'true'
+      echo 'Deleting.'
     else
-      flag = false
+      DB_STATUS = 'false'
+      echo 'Deleted.'
     fi
+    sleep 10
   done
   echo 'Removed database'
 
