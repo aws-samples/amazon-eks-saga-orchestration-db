@@ -11,7 +11,7 @@ aws rds create-db-instance --db-name ekssagadb \
   --master-username admin \
   --master-user-password ${MYSQL_MASTER_PASSWORD} \
   --publicly-accessible \
-  --enable-iam-database-authentication
+  --enable-iam-database-authentication --quiet
 
 DB_STATUS=`aws rds describe-db-instances --db-instance-identifier ${RDS_DB_ID} --query 'DBInstances[0].DBInstanceStatus' --output text`
 echo 'Database status: ' ${DB_STATUS}
