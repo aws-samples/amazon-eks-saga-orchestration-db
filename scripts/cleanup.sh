@@ -8,7 +8,7 @@ cleanUp() {
   GROUP_NAME=$3
 
   echo 'Removing RDS policy'
-  aws iam delete-policy --policy-arn arn:aws:iam::${ACCOUNT_ID}:policy/eks-saga-rds-policy
+  aws iam delete-policy --policy-arn arn:aws:iam::${ACCOUNT_ID}:policy/eks-saga-rds-orche-policy
   
   echo 'Removing RDS DB instance'
   aws rds delete-db-instance --db-instance-identifier ${RDS_DB_ID} --skip-final-snapshot
