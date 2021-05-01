@@ -18,10 +18,10 @@ cleanUp() {
   do
     if `aws rds describe-db-instances --db-instance-identifier ${RDS_DB_ID} 1>/dev/null 2>/dev/null`;
     then
-      DB_STATUS = 'true'
+      DB_STATUS='true'
       echo 'Deleting.'
     else
-      DB_STATUS = 'false'
+      DB_STATUS='false'
       echo 'Deleted.'
     fi
     sleep 10
