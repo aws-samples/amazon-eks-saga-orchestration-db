@@ -11,7 +11,7 @@ cleanUp() {
   aws iam delete-policy --policy-arn arn:aws:iam::${ACCOUNT_ID}:policy/eks-saga-rds-orche-policy
   
   echo 'Removing RDS DB instance'
-  aws rds delete-db-instance --db-instance-identifier ${RDS_DB_ID} --skip-final-snapshot
+  aws rds delete-db-instance --db-instance-identifier ${RDS_DB_ID} --skip-final-snapshot --query '.DBInstance.DBInstanceIdentifier' --output text 
 
   DB_STATUS='true'
   while [[ "${DB_STATUS}" == 'true' ]]
