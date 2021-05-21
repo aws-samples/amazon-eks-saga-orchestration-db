@@ -6,12 +6,9 @@ cleanUp() {
   ACCOUNT_ID=$1
   RDS_DB_ID=$2
   GROUP_NAME=$3
-
-  echo 'Removing RDS policy'
-  aws iam delete-policy --policy-arn arn:aws:iam::${ACCOUNT_ID}:policy/eks-saga-rds-orche-policy
   
   echo 'Removing RDS DB instance'
-  aws rds delete-db-instance --db-instance-identifier ${RDS_DB_ID} --skip-final-snapshot --query '.DBInstance.DBInstanceIdentifier' --output text 
+  aws rds delete-db-instance --db-instance-identifier ${RDS_DB_ID} --skip-final-snapshot --query 'DBInstance.DBInstanceIdentifier' --output text 
 
   DB_STATUS='true'
   while [[ "${DB_STATUS}" == 'true' ]]
@@ -27,9 +24,6 @@ cleanUp() {
     sleep 10
   done
   echo 'Removed database'
-
-  echo 'Removing RDS DB security group'
-  aws ec2 delete-security-group --group-name ${GROUP_NAME}
 }
 
 if [[ $# -ne 2 ]] ; then
